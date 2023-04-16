@@ -2,8 +2,11 @@
     {%for object in objects %}
     <article>
         <img src="{{object.thumbnail.url}}">
-        <h1><a href="{% url haminjory:'detail' object.slug %}">{{object.title}}</a></h1>
+        <h1><a href="{% url 'haminjory:detail' object.slug %}">{{object.title}}</a></h1>
         <p>{{object.description}}</p>
+        {%for category in object.category_pub.all%}
+            <p>{{category}}</p>
+        {%endfor %}
     </article>
     {% endfor%}
 </div>

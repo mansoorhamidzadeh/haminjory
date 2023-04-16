@@ -1,0 +1,9 @@
+<div>
+    {%for object in objects %}
+    <article>
+        <img src="{{object.thumbnail.url}}">
+        <h1><a href="{% url haminjory:'detail' object.slug %}">{{object.title}}</a></h1>
+        <p>{{object.description}}</p>
+    </article>
+    {% endfor%}
+</div>

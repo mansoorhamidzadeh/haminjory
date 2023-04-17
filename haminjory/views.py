@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 
@@ -28,7 +29,17 @@ class CategoryList(ListView):
         slug = self.kwargs.get('slug')
         category = get_object_or_404(Category.objects.active(), slug=slug)
         return category.articles.publish()
-#
+
+
+class AutherList(ListView):
+    template_name = 'haminjory/autherlist.html'
+    context_object_name = 'auther'
+
+    def get_queryset(self):
+        username = self.kwargs.get('username')
+        auther = get_object_or_404(User, username=username)
+        return auther.auther.publish()
+
 # def home(request):
 #     objects = Article.objects.publish()
 #

@@ -1,5 +1,6 @@
-from django.contrib.auth.models import User
+from account.models import User
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import format_html
 
@@ -56,6 +57,9 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('account:home')
 
     def thumbnail_tag(self):
         return format_html("<img with=100 height=75 src='{}'/>".format(self.thumbnail.url))
